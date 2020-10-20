@@ -51,7 +51,7 @@
 
     <header class="bg-dark text-white">
       <div class="container text-center">
-        <h1>VSINGLE CHANNEL VOICE SEPARATION FOR UNKNOWN NUMBEROF SPEAKERS UNDER REVERBERANT AND NOISY SETTINGS</h1>
+        <h1>SINGLE CHANNEL VOICE SEPARATION FOR UNKNOWN NUMBER OF SPEAKERS UNDER REVERBERANT AND NOISY SETTINGS</h1>
       </div>
     </header>
 
@@ -67,10 +67,12 @@
             This post presents <a href="https://arxiv.org/abs/1902.03083">"Voice Separation with an Unknown Number of Multiple Speakers"</a>,
                 a deep model for multi speaker voice separation with single microphone.
                 </p><p class="lead" align="justify">
-                We present a new method for separating a mixed audio sequence, in which multiple voices speak simultaneously.
-                The new method employs gated neural networks that are trained to separate the voices at multiple processing steps, while maintaining the speaker in each output channel fixed.
-                A different model is trained for every number of possible speakers, and a the model with the largest number of speakers is employed to select the actual number of speakers in a given sample.
-                Our method greatly outperforms the current state of the art, which, as we show, is not competitive for more than two speakers.
+                  We  present  a  unified  network  for  voice  separation  of  anunknown  number  of  speakers.    
+                  The  proposed  approach  is composed  of  several  separation  heads  optimized  together with a speaker classification branch.   
+                  The separation is carried out in the time domain, together with parameter sharing between all separation heads.  
+                  The classification branch estimates the number of speakers while each head is specialized in separating a different number of speakers. 
+                  We evaluate the proposed model under both clean and noisy reverberant settings.  Results suggest that the proposed approach is superior to the baseline model by a significant margin.  
+                  Additionally, we present a new noisy and reverberant dataset of up to five different speakers speaking simultaneously.
             <!--<br><img src="arch.png" alt="Italian Trulli" width="750px">-->
             <!--<br>-->
             <!--<br><img src="mul_concat.png" alt="Italian Trulli" width="750px">-->
@@ -94,18 +96,18 @@
     <br>  </br>
             <div class="container">
               <div class="row">
-                <div class="col-md-8">
+                <!-- <div class="col-md-8"> -->
 
-                    <h3>Architecture</h3>
-
-                    <img src="src/arch.png" alt="Italian Trulli" width="750px">
-                    <br>  </br>
-                    <img src="src/mul_concat.png" alt="Italian Trulli" width="750px">
-                </div>
-                <div class="col-md-4">
+                <h3>Network Architecture</h3>
+                <br>  </br>
+                <img src="src/net_diagram.png" alt="Italian Trulli" width="750px">
+                <br>  </br>
+                    <!-- <img src="src/mul_concat.png" alt="Italian Trulli" width="750px"> -->
+                <!-- </div> -->
+                <!-- <div class="col-md-4">
                     <h3>Results</h3>
                     <img src="src/results_table_2.png" alt="Italian Trulli" width="400px">
-                </div>
+                </div> -->
 
               </div>
             </div>
@@ -128,9 +130,6 @@
                   <li>Mixture input - original mixed audio</li>
                   <li>Ground Truth - original separated samples</li>
                   <li>Ours - our proposed method</li>
-                  <li>DPRNN<sup>[1]</sup> - refer to the method "Dual-path RNN"</li>
-                  <li>Conv-TasNet<sup>[2]</sup> - refer to the method "Surpassing Ideal Time–Frequency
-                Magnitude Masking for Speech Separation" </li>
                 </ul>
             </p>
             <style type="text/css">
@@ -152,52 +151,52 @@
               <thead>
                 <tr>
                   <th>Mixture input</th>
-                  <th>Ground Truth</th>
+                  <!-- <th>Ground Truth</th> -->
                   <th>Ours</th>
-                  <th>DPRNN</th>
-                  <th>Conv-TasNet</th>
+                  <!-- <th>DPRNN</th>
+                  <th>Conv-TasNet</th> -->
                 </tr>
               </thead>
               <tbody>
                 <tr style="border-top:1px solid black">
                   <td rowspan="2"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/dprnn2/22go0106_0.742_440o030p_-0.742.wav"
+                      <source src="src/samples/clean/2/441o030j_1.7373_050o020p_-1.7373.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/gt2/22go0106_0.742_440o030p_-0.742_s2.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/ours2/22go0106_0.742_440o030p_-0.742_s1.wav"
+                      <source src="src/samples/clean/2/441o030j_1.7373_050o020p_-1.7373_s1.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/dprnn2/22go0106_0.742_440o030p_-0.742_s1.wav"
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                      <source src="src/samples/clean/2/441o030j_1.7373_050o020p_-1.7373_s1.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv2/22go0106_0.742_440o030p_-0.742_s2.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt2/22go0106_0.742_440o030p_-0.742_s1.wav"
+                      <source src="src/samples/clean/2/441o030j_1.7373_050o020p_-1.7373_s2.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours2/22go0106_0.742_440o030p_-0.742_s2.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/dprnn2/22go0106_0.742_440o030p_-0.742_s2.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                        type="audio/wav"></audio></td> -->
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                      <source src="src/samples/clean/2/441o030j_1.7373_050o020p_-1.7373_s2.wav"
+                        type="audio/wav"></audio></td> -->
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv2/22go0106_0.742_440o030p_-0.742_s1.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr style="border-top:1px solid black">
                   <td rowspan="2"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/dprnn2/421c020j_1.394_444c020x_-1.394.wav"
+                      <source src="src/samples/clean/2/442o0308_1.7837_447o030p_-1.7837.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt2/421c020j_1.394_444c020x_-1.394_s2.wav"
+                      <source src="src/samples/clean/2/442o0308_1.7837_447o030p_-1.7837_s1.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours2/421c020j_1.394_444c020x_-1.394_s1.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -205,13 +204,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv2/421c020j_1.394_444c020x_-1.394_s1.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt2/421c020j_1.394_444c020x_-1.394_s1.wav"
+                      <source src="src/samples/clean/2/442o0308_1.7837_447o030p_-1.7837_s2.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours2/421c020j_1.394_444c020x_-1.394_s2.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -219,7 +218,7 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv2/421c020j_1.394_444c020x_-1.394_s2.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
               </tbody>
             </table>
@@ -236,21 +235,21 @@
               <thead>
                 <tr>
                   <th>Mixture input</th>
-                  <th>Ground Truth</th>
+                  <!-- <th>Ground Truth</th> -->
                   <th>Ours</th>
-                  <th>DPRNN</th>
-                  <th>Conv-TasNet</th>
+                  <!-- <th>DPRNN</th>
+                  <th>Conv-TasNet</th> -->
                 </tr>
               </thead>
               <tbody>
                 <tr style="border-top:1px solid black">
                   <td rowspan="3"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/dprnn3/422o030m_0.69126_442o030i_-0.69126_446o0312_0.wav"
+                      <source src="src/samples/clean/3/050c010u_2.1275_444o030q_-2.1275_446o0306_0.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s3.wav"
+                      <source src="src/samples/clean/3/050c010u_2.1275_444o030q_-2.1275_446o0306_0_s1.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s1.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -258,13 +257,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s3.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s2.wav"
+                      <source src="src/samples/clean/3/050c010u_2.1275_444o030q_-2.1275_446o0306_0_s2.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s2.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -272,13 +271,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s1.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s1.wav"
+                      <source src="src/samples/clean/3/050c010u_2.1275_444o030q_-2.1275_446o0306_0_s3.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s3.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -286,16 +285,16 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv3/422o030m_0.69126_442o030i_-0.69126_446o0312_0_s2.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr style="border-top:1px solid black">
                   <td rowspan="3"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/dprnn3/422c0201_0.14718_441o0313_-0.14718_447o030u_0.wav"
+                      <source src="src/samples/clean/3/447o030f_0.069704_421c020n_-0.069704_052o020j_0.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s1.wav"
+                      <source src="src/samples/clean/3/447o030f_0.069704_421c020n_-0.069704_052o020j_0_s1.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s3.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -303,13 +302,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s2.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s3.wav"
+                      <source src="src/samples/clean/3/447o030f_0.069704_421c020n_-0.069704_052o020j_0_s2.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s1.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -317,13 +316,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s3.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s2.wav"
+                      <source src="src/samples/clean/3/447o030f_0.069704_421c020n_-0.069704_052o020j_0_s3.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s2.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -331,7 +330,7 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv3/422c0201_0.14718_441o0313_-0.14718_447o030u_0_s1.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
               </tbody>
             </table>
@@ -346,21 +345,21 @@
               <thead>
                 <tr>
                   <th>Mixture input</th>
-                  <th>Ground Truth</th>
+                  <!-- <th>Ground Truth</th> -->
                   <th>Ours</th>
-                  <th>DPRNN</th>
-                  <th>Conv-TasNet</th>
+                  <!-- <th>DPRNN</th>
+                  <th>Conv-TasNet</th> -->
                 </tr>
               </thead>
               <tbody>
                 <tr style="border-top:1px solid black">
                   <td rowspan="4"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/ours4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411.wav"
+                      <source src="src/samples/clean/4/442o0308_2.0934_050o020x_0.23178_051o020c_-0.23178_444o0307_-2.0934.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s1.wav"
+                      <source src="src/samples/clean/4/442o0308_2.0934_050o020x_0.23178_051o020c_-0.23178_444o0307_-2.0934_s1.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s3.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -368,13 +367,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s1.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s2.wav"
+                      <source src="src/samples/clean/4/442o0308_2.0934_050o020x_0.23178_051o020c_-0.23178_444o0307_-2.0934_s2.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s4.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -382,13 +381,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s2.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s3.wav"
+                      <source src="src/samples/clean/4/442o0308_2.0934_050o020x_0.23178_051o020c_-0.23178_444o0307_-2.0934_s3.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s2.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -396,13 +395,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s3.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s4.wav"
+                      <source src="src/samples/clean/4/442o0308_2.0934_050o020x_0.23178_051o020c_-0.23178_444o0307_-2.0934_s4.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s1.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -410,9 +409,9 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv4/22go0107_2.411_440o030k_1.6598_446o030m_-1.6598_421o030r_-2.411_s4.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
-                <tr style="border-top:1px solid black">
+                <!-- <tr style="border-top:1px solid black">
                   <td rowspan="4"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours4/22ho010z_0.70341_053o020b_0.96111_444c0210_-0.96111_050c0107_-0.70341.wav"
                         type="audio/wav"></audio></td>
@@ -469,7 +468,7 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv4/22ho010z_0.70341_053o020b_0.96111_444c0210_-0.96111_050c0107_-0.70341_s3.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
               </tbody>
             </table>
@@ -484,21 +483,21 @@
               <thead>
                 <tr>
                   <th>Mixture input</th>
-                  <th>Ground Truth</th>
+                  <!-- <th>Ground Truth</th> -->
                   <th>Ours</th>
-                  <th>DPRNN</th>
-                  <th>Conv-TasNet</th>
+                  <!-- <th>DPRNN</th>
+                  <th>Conv-TasNet</th> -->
                 </tr>
               </thead>
               <tbody>
                 <tr style="border-top:1px solid black">
                   <td rowspan="5"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/dprnn5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0.wav"
+                      <source src="src/samples/clean/5/423o030d_0.26599_052c0102_0.21588_445o030g_-0.21588_442c0205_-0.26599_050c010u_0.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s4.wav"
+                      <source src="src/samples/clean/5/423o030d_0.26599_052c0102_0.21588_445o030g_-0.21588_442c0205_-0.26599_050c010u_0_s1.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s2.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -506,13 +505,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s2.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s3.wav"
+                      <source src="src/samples/clean/5/423o030d_0.26599_052c0102_0.21588_445o030g_-0.21588_442c0205_-0.26599_050c010u_0_s2.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s4.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -520,27 +519,27 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s4.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s1.wav"
+                      <source src="src/samples/clean/5/423o030d_0.26599_052c0102_0.21588_445o030g_-0.21588_442c0205_-0.26599_050c010u_0_s3.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s5.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/dprnn5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s3.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/conv5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s3.wav"
-                        type="audio/wav"></audio></td>
+                      <source src="src/samples/conv5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s3.wav" -->
+                        <!-- type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s2.wav"
+                      <source src="src/samples/clean/5/423o030d_0.26599_052c0102_0.21588_445o030g_-0.21588_442c0205_-0.26599_050c010u_0_s4.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s3.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -548,13 +547,13 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s5.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
                 <tr>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/samples/gt5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s5.wav"
+                      <source src="src/samples/clean/5/423o030d_0.26599_052c0102_0.21588_445o030g_-0.21588_442c0205_-0.26599_050c010u_0_s5.wav"
                         type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                  <!-- <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/ours5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s1.wav"
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
@@ -562,9 +561,9 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv5/22gc010q_1.9223_052c010w_0.54576_445o0311_-0.54576_050o020d_-1.9223_447c0210_0_s1.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
-                <tr style="border-top:1px solid black">
+                <!-- <tr style="border-top:1px solid black">
                   <td rowspan="5"><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/dprnn5/443o030v_2.2076_441c020w_1.508_22hc010q_-1.508_053o020z_-2.2076_440o030x_0.wav"
                         type="audio/wav"></audio></td>
@@ -635,14 +634,14 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/conv5/443o030v_2.2076_441c020w_1.508_22hc010q_-1.508_053o020z_-2.2076_440o030x_0_s1.wav"
-                        type="audio/wav"></audio></td>
+                        type="audio/wav"></audio></td> -->
                 </tr>
               </tbody>
             </table>
 
               <br>
 
-            <h3>WSJ-2mix DB Tested on WSJ-5mix Speakers Model</h3>
+            <!-- <h3>WSJ-2mix DB Tested on WSJ-5mix Speakers Model</h3>
             <p align="justify">Results for model that train on WSJ-5mix and tested on WSJ-2mix. Results suggests that all model have managed to separate the two speakers. However, compared to DPRNN and ConvTasNet which output noise and mixed signals in the rest of the output channels, our model produce silence with significantly less artifacts.  </p>
             <p></p>
             <table>
@@ -688,10 +687,10 @@
                         type="audio/wav"></audio></td>
                 </tr>
                 <tr>
-                  <!--<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">-->
-                      <!--<source src=-->
-                        <!--type="audio/wav"></audio></td>-->
-                  <td> </td>
+                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
+                      <source src=
+                        type="audio/wav"></audio></td>
+                   <td> </td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/crossdbs/ours/22gc010l_0.11746_444o030o_-0.11746_s1.wav"
                         type="audio/wav"></audio></td>
@@ -703,10 +702,10 @@
                         type="audio/wav"></audio></td>
                 </tr>
                 <tr>
-                  <!--<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">-->
+                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">-->
                       <!--<source src=-->
                         <!--type="audio/wav"></audio></td>-->
-                  <td> </td>
+                  <!-- <td> </td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/crossdbs/ours/22gc010l_0.11746_444o030o_-0.11746_s2.wav"
                         type="audio/wav"></audio></td>
@@ -718,10 +717,10 @@
                         type="audio/wav"></audio></td>
                 </tr>
                 <tr>
-                  <!--<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">-->
+                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">-->
                       <!--<source src=-->
                         <!--type="audio/wav"></audio></td>-->
-                  <td> </td>
+                  <!-- <td> </td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/crossdbs/ours/22gc010l_0.11746_444o030o_-0.11746_s3.wav"
                         type="audio/wav"></audio></td>
@@ -730,8 +729,8 @@
                         type="audio/wav"></audio></td>
                   <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
                       <source src="src/samples/crossdbs/convtasnet/22gc010l_0.11746_444o030o_-0.11746_s5.wav"
-                        type="audio/wav"></audio></td>
-                </tr>               
+                        type="audio/wav"></audio></td> --> --> -->
+                </tr>                -->
               </tbody>
             </table>
 			</center>                        
