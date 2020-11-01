@@ -125,67 +125,65 @@
       </div>
     </section>
 
-    <section id="real_samples" class="bg-light">
-      <div class="container">
-        
-          <script src="https://unpkg.com/wavesurfer.js"></script>
-          <h3>Real-World Example</h3>
-          <div class="row">
-              <b>Mixture:</b>
-              <div id="header_waveform_mix"></div>
-              <button id="input_header" class="play-button-demo btn btn-primary" onclick="wavesurfer.playPause()">
-                  <i class="fa fa-play"></i>
-                  Play
-                  /
-                  <i class="fa fa-pause"></i>
-                  Pause
-              </button>
-          </div>
-          <div class="row">
-              <b>Spk #1:</b>
-              <div id="header_waveform_s1"></div>
-              <button id="header" class="play-button-demo btn btn-primary" onclick="wavesurfer_2.playPause()">
-                  <i class="fa fa-play"></i>
-                  Play
-                  /
-                  <i class="fa fa-pause"></i>
-                  Pause
-              </button>
-          </div>
-          <div class="row">
-              <b>Spk #2:</b>
-              <div id="header_waveform_s2"></div>
-              <button id="header" class="play-button-demo btn btn-primary" onclick="wavesurfer_3.playPause()">
-                  <i class="fa fa-play"></i>
-                  Play
-                  /
-                  <i class="fa fa-pause"></i>
-                  Pause
-              </button>
-          </div>
-          <script>
-            var wavesurfer = WaveSurfer.create({
-                        container: '#header_waveform_mix',
-                        waveColor: 'violet',
-                        progressColor: 'purple'
-                    });
-            wavesurfer.load('./src/samples/real/mix.wav');
-            var wavesurfer_2 = WaveSurfer.create({
-                        container: '#header_waveform_s1',
-                        waveColor: 'violet',
-                        progressColor: 'purple'
-                    });
-            wavesurfer_2.load('./src/samples/real/s1.wav');
-            var wavesurfer_3 = WaveSurfer.create({
-                        container: '#header_waveform_s2',
-                        waveColor: 'violet',
-                        progressColor: 'purple'
-                    });
-            wavesurfer_3.load('./src/samples/real/s2.wav');
-          </script>
-        
+    <div class="container">
+      <script src="https://unpkg.com/wavesurfer.js"></script>
+      <h3>Real life example</h3>
+      <p>This example was recorded using a laptop microphone in higly reverberant room. The male speaker was 2.5m away from the microphone while the female speaker was 1m away.</p>
+      <div class="option-div">
+          <h4>Mixture:</h4>
+          <div id="header_waveform_mix"></div>
+          <button id="input_header" class="play-button-demo btn btn-primary" onclick="wavesurfer.playPause()">
+              <i class="fa fa-play"></i>
+              Play
+              /
+              <i class="fa fa-pause"></i>
+              Pause
+          </button>
       </div>
-    </section>
+      <div class="option-div">
+          <h4>Spk #1:</h4>
+          <div id="header_waveform_s1"></div>
+          <button id="header" class="play-button-demo btn btn-primary" onclick="wavesurfer_2.playPause()">
+              <i class="fa fa-play"></i>
+              Play
+              /
+              <i class="fa fa-pause"></i>
+              Pause
+          </button>
+      </div>
+      <div class="option-div">
+          <h4>Spk #2:</h4>
+          <div id="header_waveform_s2"></div>
+          <button id="header" class="play-button-demo btn btn-primary" onclick="wavesurfer_3.playPause()">
+              <i class="fa fa-play"></i>
+              Play
+              /
+              <i class="fa fa-pause"></i>
+              Pause
+          </button>
+      </div>
+<script>
+  var wavesurfer = WaveSurfer.create({
+              container: '#header_waveform_mix',
+              waveColor: 'violet',
+              progressColor: 'purple'
+          });
+  wavesurfer.load('./src/samples/real/mix.wav');
+  var wavesurfer_2 = WaveSurfer.create({
+              container: '#header_waveform_s1',
+              waveColor: 'violet',
+              progressColor: 'purple'
+          });
+  wavesurfer_2.load('./src/samples/real/s1.wav');
+  var wavesurfer_3 = WaveSurfer.create({
+              container: '#header_waveform_s2',
+              waveColor: 'violet',
+              progressColor: 'purple'
+          });
+  wavesurfer_3.load('./src/samples/real/s2.wav');
+</script>
+</div>
+
 
     <section id="samples" class="bg-light">
       <div class="container">
